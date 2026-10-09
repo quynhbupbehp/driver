@@ -28,6 +28,13 @@
       background-color: #0284c7;
       color: #ffffff;
     }
+    /* Style cho Tab Active */
+    .tab-btn.active {
+      background-color: #0284c7;
+      color: #ffffff;
+      border-color: #0369a1;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+    }
   </style>
 </head>
 <body class="p-4 md:p-8 max-w-7xl mx-auto space-y-8">
@@ -86,31 +93,32 @@
     </div>
   </section>
 
-  <!-- Danh sách Tool & Driver -->
+  <!-- Hệ thống Tab phân loại -->
   <section>
-    <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
-      <i class="fa-solid fa-box-archive text-sky-400"></i> Danh sách Tool & Driver
-    </h2>
-
-    <!-- Thanh tìm kiếm -->
-    <div class="relative mb-6">
-      <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-      <input 
-        type="text" 
-        id="searchInput" 
-        placeholder="Tìm kiếm tool..." 
-        class="w-full bg-[#111827] border border-gray-800 rounded-xl py-3 pl-11 pr-4 text-gray-200 focus:outline-none focus:border-sky-500 transition-colors"
-      >
+    <!-- Thanh Chuyển Tab -->
+    <div class="flex flex-wrap gap-2 md:gap-3 border-b border-gray-800 pb-4 mb-6">
+      <button onclick="switchTab('mobile')" id="tab-mobile" class="tab-btn active px-4 py-2.5 rounded-xl text-sm font-medium border border-gray-800 bg-[#111827] text-gray-300 hover:text-white transition-all flex items-center gap-2">
+        <i class="fa-solid fa-mobile-screen-button"></i> Tool Mobile
+      </button>
+      <button onclick="switchTab('driver')" id="tab-driver" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-medium border border-gray-800 bg-[#111827] text-gray-300 hover:text-white transition-all flex items-center gap-2">
+        <i class="fa-solid fa-hard-drive"></i> Driver
+      </button>
+      <button onclick="switchTab('pc')" id="tab-pc" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-medium border border-gray-800 bg-[#111827] text-gray-300 hover:text-white transition-all flex items-center gap-2">
+        <i class="fa-solid fa-desktop"></i> Máy Tính
+      </button>
+      <button onclick="switchTab('banking')" id="tab-banking" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-medium border border-gray-800 bg-[#111827] text-gray-300 hover:text-white transition-all flex items-center gap-2">
+        <i class="fa-solid fa-building-columns"></i> Ngân Hàng
+      </button>
     </div>
 
     <!-- Lưới danh sách Tool -->
     <div id="toolGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <!-- Dữ liệu Tool sẽ tự động nạp từ file JSON vào đây -->
+      <!-- Dữ liệu Tool sẽ tự động nạp từ file JSON theo Tab tương ứng -->
     </div>
   </section>
 
   <script>
-    // 1. Lấy thông tin IP & Hệ thống (Dùng API miễn phí không bị chặn)
+    // 1. Lấy thông tin IP & Hệ thống
     fetch('https://ipwho.is/')
       .then(res => res.json())
       .then(data => {
@@ -142,24 +150,37 @@
     }
 
     // 2. Tải danh sách Tool từ file data.json
-    let allTools = [];
+    let toolsData = {
+      mobile: [],
+      driver: [],
+      pc: [],
+      banking: []
+    };
+    let currentTab = 'mobile';
 
     async function loadTools() {
       try {
         const response = await fetch('data.json');
-        allTools = await response.json();
-        renderTools(allTools);
+        toolsData = await response.json();
+        renderTools(currentTab);
       } catch (error) {
         console.error("Lỗi khi tải dữ liệu tool:", error);
       }
     }
 
-    // 3. Hiển thị danh sách ra màn hình
-    function renderTools(tools) {
+    // 3. Hiển thị danh sách ra màn hình theo Tab
+    function renderTools(category) {
       const grid = document.getElementById('toolGrid');
       grid.innerHTML = '';
 
-      tools.forEach((tool, index) => {
+      const list = toolsData[category] || [];
+
+      if (list.length === 0) {
+        grid.innerHTML = '<div class="col-span-full text-center py-8 text-gray-500">Chưa có dữ liệu trong mục này.</div>';
+        return;
+      }
+
+      list.forEach((tool, index) => {
         const itemHtml = `
           <div class="card-dark p-3 rounded-xl flex items-center gap-3 transition-all hover:bg-gray-800/40">
             <a href="${tool.url}" target="_blank" class="btn-download p-3 rounded-lg flex items-center justify-center transition-colors">
@@ -174,12 +195,19 @@
       });
     }
 
-    // 4. Tìm kiếm Tool nhanh
-    document.getElementById('searchInput').addEventListener('input', (e) => {
-      const keyword = e.target.value.toLowerCase();
-      const filtered = allTools.filter(tool => tool.name.toLowerCase().includes(keyword));
-      renderTools(filtered);
-    });
+    // 4. Chuyển đổi qua lại giữa các Tab
+    function switchTab(category) {
+      currentTab = category;
+      
+      // Xóa active tất cả các tab
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      
+      // Active tab hiện tại
+      document.getElementById(`tab-${category}`).classList.add('active');
+      
+      // Render lại danh sách
+      renderTools(category);
+    }
 
     loadTools();
   </script>
