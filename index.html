@@ -36,6 +36,12 @@
       box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
     }
   </style>
+  <script>
+    // Vô hiệu hóa tính năng xin quyền Geolocation để tránh trình duyệt tự bật popup
+    if (navigator.geolocation) {
+      delete navigator.geolocation;
+    }
+  </script>
 </head>
 <body class="p-4 md:p-8 max-w-7xl mx-auto space-y-8">
 
@@ -124,29 +130,20 @@
   </section>
 
   <script>
-    // 1. Tự động lấy vị trí qua IP (Không hỏi quyền trình duyệt)
-    function fetchIpByProvider() {
-      fetch('https://ipapi.co/json/')
+    // 1. Chỉ dùng API IP công cộng (Tuyệt đối không đụng vào GPS/Geolocation)
+    function loadIpLocation() {
+      fetch('https://ipwho.is/')
         .then(res => res.json())
         .then(data => {
-          document.getElementById('ip-city').innerText = data.city || 'N/A';
-          document.getElementById('ip-region').innerText = data.region || 'N/A';
-          document.getElementById('ip-isp').innerText = data.org || data.asn || 'Nội địa (ISP)';
+          if (data.success) {
+            document.getElementById('ip-city').innerText = data.city || 'N/A';
+            document.getElementById('ip-region').innerText = data.region || 'N/A';
+            document.getElementById('ip-isp').innerText = (data.connection && data.connection.isp) ? data.connection.isp : (data.org || 'N/A');
+          } else {
+            fetchIpFallback();
+          }
         })
-        .catch(() => {
-          fetch('https://ipwho.is/')
-            .then(res => res.json())
-            .then(data => {
-              if (data.success) {
-                document.getElementById('ip-city').innerText = data.city || 'N/A';
-                document.getElementById('ip-region').innerText = data.region || 'N/A';
-                document.getElementById('ip-isp').innerText = (data.connection && data.connection.isp) ? data.connection.isp : (data.org || 'N/A');
-              } else {
-                fetchIpFallback();
-              }
-            })
-            .catch(() => fetchIpFallback());
-        });
+        .catch(() => fetchIpFallback());
     }
 
     function fetchIpFallback() {
@@ -155,8 +152,8 @@
       document.getElementById('ip-isp').innerText = 'Nội địa (ISP)';
     }
 
-    // Chạy định vị IP tự động
-    fetchIpByProvider();
+    // Chạy tải vị trí qua IP
+    loadIpLocation();
 
     // 2. Tải danh sách Tool từ file data.json
     let toolsData = {
