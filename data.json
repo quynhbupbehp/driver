@@ -83,8 +83,20 @@
   ],
   "banking": [
     {
-      "name": "Tài Khoản Ngân Hàng",
-      "url": "https://byvn.net/nD4V"
+      "name": "TK Ngân Hàng",
+      "url": "https://quynhbupbehp2026.github.io/chuyentien/"
+    }
+  ],
+  "rent": [
+    {
+      "name": "Thuê Tool",
+      "url": ".............."
+    }
+  ],
+  "testpoint": [
+    {
+      "name": "Testpoint",
+      "url": "hhttps://quynhbupbehp2026.github.io/testpoint/"
     }
   ]
 }
