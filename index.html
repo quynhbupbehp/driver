@@ -37,43 +37,54 @@
 </head>
 <body class="p-4 md:p-8 max-w-7xl mx-auto space-y-8">
 
-  <!-- Thông tin Facebook & Hệ thống -->
+  <!-- Thông tin Facebook & Hệ thống (4 ô gọn gàng) -->
   <section>
     <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
       <i class="fa-solid fa-tower-broadcast text-sky-400"></i> TOOL MOBILE + PC - QUYNH BUP BE
     </h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
       
       <!-- Box Facebook -->
-      <a href="https://www.facebook.com/kimchimobile2019" target="_blank" class="card-dark p-4 rounded-xl flex items-center gap-4 transition-all hover:border-sky-500 group">
-        <div class="bg-blue-950/60 p-3 rounded-lg text-blue-400 border border-blue-800/50 group-hover:bg-blue-600 group-hover:text-white transition-all">
-          <i class="fa-brands fa-facebook text-xl"></i>
+      <a href="https://www.facebook.com/kimchimobile2019" target="_blank" class="card-dark p-3 rounded-xl flex items-center gap-3 transition-all hover:border-sky-500 group">
+        <div class="bg-blue-950/60 p-2.5 rounded-lg text-blue-400 border border-blue-800/50 group-hover:bg-blue-600 group-hover:text-white transition-all shrink-0">
+          <i class="fa-brands fa-facebook text-lg"></i>
         </div>
-        <div>
-          <div class="text-xs text-gray-400">DỊCH VỤ PHẦN MỀM ONLINE</div>
-          <div class="font-bold text-sky-400 group-hover:text-sky-300">ĐẶNG VĂN QUỴNH</div>
+        <div class="min-w-0">
+          <div class="text-[11px] text-gray-400 leading-tight">DỊCH VỤ PHẦN MỀM ONLINE</div>
+          <div class="font-bold text-sky-400 group-hover:text-sky-300 text-sm truncate">ĐẶNG VĂN QUỴNH</div>
         </div>
       </a>
 
-      <!-- Box Vị trí gộp (Dòng 1: Quận/Huyện, Dòng 2: TP/Tỉnh) -->
-      <div class="card-dark p-4 rounded-xl flex items-center gap-4">
-        <div class="bg-sky-950/50 p-3 rounded-lg text-sky-400 border border-sky-800/40">
-          <i class="fa-solid fa-map-location-dot text-xl"></i>
+      <!-- Box Vị trí gộp (Dòng 1: Nam Sách, Dòng 2: TP Hải Phòng) -->
+      <div class="card-dark p-3 rounded-xl flex items-center gap-3">
+        <div class="bg-sky-950/50 p-2.5 rounded-lg text-sky-400 border border-sky-800/40 shrink-0">
+          <i class="fa-solid fa-map-location-dot text-lg"></i>
         </div>
-        <div class="flex flex-col justify-center space-y-0.5">
-          <div id="ip-city" class="font-bold text-gray-200">Đang tải...</div>
-          <div id="ip-region" class="font-bold text-gray-200">Đang tải...</div>
+        <div class="flex flex-col justify-center min-w-0">
+          <div id="ip-city" class="font-bold text-gray-200 text-sm leading-snug truncate">Đang tải...</div>
+          <div id="ip-region" class="font-bold text-gray-200 text-sm leading-snug truncate">Đang tải...</div>
         </div>
       </div>
 
-      <!-- Box Tổ chức -->
-      <div class="card-dark p-4 rounded-xl flex items-center gap-4">
-        <div class="bg-sky-950/50 p-3 rounded-lg text-sky-400 border border-sky-800/40">
-          <i class="fa-solid fa-building text-xl"></i>
+      <!-- Box Đang Dùng Mạng -->
+      <div class="card-dark p-3 rounded-xl flex items-center gap-3">
+        <div class="bg-sky-950/50 p-2.5 rounded-lg text-sky-400 border border-sky-800/40 shrink-0">
+          <i class="fa-solid fa-building text-lg"></i>
         </div>
-        <div>
-          <div class="text-xs text-gray-400">Đang Dùng Mạng</div>
-          <div id="ip-isp" class="font-bold text-gray-200">Đang tải...</div>
+        <div class="min-w-0">
+          <div class="text-[11px] text-gray-400 leading-tight">Đang Dùng Mạng</div>
+          <div id="ip-isp" class="font-bold text-gray-200 text-sm truncate">Đang tải...</div>
+        </div>
+      </div>
+
+      <!-- Box Địa Chỉ IP Mạng (Đặt bên phải Đang Dùng Mạng) -->
+      <div class="card-dark p-3 rounded-xl flex items-center gap-3">
+        <div class="bg-sky-950/50 p-2.5 rounded-lg text-sky-400 border border-sky-800/40 shrink-0">
+          <i class="fa-solid fa-network-wired text-lg"></i>
+        </div>
+        <div class="min-w-0">
+          <div class="text-[11px] text-gray-400 leading-tight">Địa Chỉ IP Mạng</div>
+          <div id="ip-address" class="font-bold text-gray-200 text-sm truncate">Đang tải...</div>
         </div>
       </div>
 
@@ -123,12 +134,14 @@
       return city;
     }
 
-    // Hàm rút gọn "Thành Phố" / "Thanh Pho" thành "TP"
+    // Hàm rút gọn "Thành Phố" / "Thanh Pho" thành "TP" và chuyển "Hai Phong" -> "Hải Phòng"
     function formatRegionName(region) {
-      if (!region) return 'TP Hai Phong';
-      return region
+      if (!region) return 'TP Hải Phòng';
+      let formatted = region
         .replace(/Thành\s+Phố/gi, 'TP')
-        .replace(/Thanh\s+Pho/gi, 'TP');
+        .replace(/Thanh\s+Pho/gi, 'TP')
+        .replace(/Hai\s+Phong/gi, 'Hải Phòng');
+      return formatted;
     }
 
     // 1. Chỉ dùng API IP công cộng
@@ -140,6 +153,7 @@
             document.getElementById('ip-city').innerText = formatCityName(data.city);
             document.getElementById('ip-region').innerText = formatRegionName(data.region);
             document.getElementById('ip-isp').innerText = (data.connection && data.connection.isp) ? data.connection.isp : (data.org || 'N/A');
+            document.getElementById('ip-address').innerText = data.ip || '127.0.0.1';
           } else {
             fetchIpFallback();
           }
@@ -149,8 +163,9 @@
 
     function fetchIpFallback() {
       document.getElementById('ip-city').innerText = 'Nam Sách';
-      document.getElementById('ip-region').innerText = 'TP Hai Phong';
-      document.getElementById('ip-isp').innerText = 'Nội địa (ISP)';
+      document.getElementById('ip-region').innerText = 'TP Hải Phòng';
+      document.getElementById('ip-isp').innerText = 'VNPT Corp';
+      document.getElementById('ip-address').innerText = 'N/A';
     }
 
     // Chạy tải vị trí qua IP
@@ -192,7 +207,7 @@
 
       list.forEach((tool, index) => {
         const itemHtml = `
-          <a href="${tool.url}" target="_blank" class="card-dark p-3 rounded-xl flex items-center transition-all hover:text-sky-400 group">
+          <a href="${tool.url}" target="_blank" class="card-dark p-2.5 rounded-xl flex items-center transition-all hover:text-sky-400 group">
             <div class="font-medium text-gray-200 group-hover:text-sky-400 text-sm truncate">
               <span class="text-gray-400 group-hover:text-sky-400 mr-1.5 font-normal">${index + 1}.</span>${tool.name}
             </div>
