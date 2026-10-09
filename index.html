@@ -53,20 +53,20 @@
         </div>
         <div>
           <div class="text-xs text-gray-400">DỊCH VỤ PHẦN MỀM ONLINE</div>
-          <div class="font-bold text-sky-400 group-hover:text-sky-300">ĐẶNG VĂN QUỴNH</div>
+          <div class="font-bold text-sky-400 group-hover:text-sky-300">ĐẶNG VĂN QUỲNH</div>
         </div>
       </a>
 
-   <!-- Box Quận / Huyện -->
-<div class="card-dark p-4 rounded-xl flex items-center gap-4">
-  <div class="bg-sky-950/50 p-3 rounded-lg text-sky-400 border border-sky-800/40">
-    <i class="fa-solid fa-city text-xl"></i>
-  </div>
-  <div>
-    <div class="text-xs text-gray-400">Quận / Huyện Cũ</div>
-    <div id="ip-city" class="font-bold text-gray-200">Đang tải...</div>
-  </div>
-</div>
+      <!-- Box Quận / Huyện -->
+      <div class="card-dark p-4 rounded-xl flex items-center gap-4">
+        <div class="bg-sky-950/50 p-3 rounded-lg text-sky-400 border border-sky-800/40">
+          <i class="fa-solid fa-city text-xl"></i>
+        </div>
+        <div>
+          <div class="text-xs text-gray-400">Quận / Huyện Cũ</div>
+          <div id="ip-city" class="font-bold text-gray-200">Đang tải...</div>
+        </div>
+      </div>
 
       <!-- Box Tỉnh -->
       <div class="card-dark p-4 rounded-xl flex items-center gap-4">
@@ -113,47 +113,103 @@
         <i class="fa-solid fa-key"></i> Thuê Tool
       </button>
       <button onclick="switchTab('testpoint')" id="tab-testpoint" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-medium border border-gray-800 bg-[#111827] text-gray-300 hover:text-white transition-all flex items-center gap-2">
-        <i class="fa-solid fa-[#microchip]"></i> Testpoint
+        <i class="fa-solid fa-microchip"></i> Testpoint
       </button>
     </div>
 
-    <!-- Lưới danh sách Tool (Đã chỉnh thành 3 cột trên màn hình lg) -->
+    <!-- Lưới danh sách Tool (3 cột trên màn hình lg) -->
     <div id="toolGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       <!-- Dữ liệu Tool sẽ tự động nạp từ file JSON theo Tab tương ứng -->
     </div>
   </section>
 
   <script>
-    // 1. Lấy thông tin Vị trí & ISP
-    fetch('https://ipwho.is/')
-      .then(res => res.json())
-      .then(data => {
-        if (data.success) {
+    // 1. Lấy thông tin Vị trí & ISP chính xác
+    function getLocation() {
+      // Ưu tiên 1: Sử dụng vị trí GPS thiết bị để xác định chính xác Quận/Huyện
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+
+            fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&accept-language=vi`)
+              .then(res => res.json())
+              .then(data => {
+                const addr = data.address || {};
+                const district = addr.district || addr.county || addr.town || addr.city_district || addr.suburb || 'Chưa xác định';
+                const state = addr.state || addr.city || 'Việt Nam';
+
+                document.getElementById('ip-city').innerText = district;
+                document.getElementById('ip-region').innerText = state;
+                
+                // Lấy ISP mạng từ API phụ
+                fetchIspOnly();
+              })
+              .catch(() => fetchIpByProvider());
+          },
+          () => {
+            // Nếu người dùng từ chối GPS -> dùng IP API
+            fetchIpByProvider();
+          },
+          { timeout: 5000 }
+        );
+      } else {
+        fetchIpByProvider();
+      }
+    }
+
+    // Định vị bằng IP khi không có GPS
+    function fetchIpByProvider() {
+      fetch('https://ipapi.co/json/')
+        .then(res => res.json())
+        .then(data => {
           document.getElementById('ip-city').innerText = data.city || 'N/A';
           document.getElementById('ip-region').innerText = data.region || 'N/A';
-          document.getElementById('ip-isp').innerText = (data.connection && data.connection.isp) ? data.connection.isp : (data.org || 'N/A');
-        } else {
-          fetchIpFallback();
-        }
-      })
-      .catch(() => {
-        fetchIpFallback();
-      });
-
-    function fetchIpFallback() {
-      fetch('https://api.ipify.org?format=json')
-        .then(res => res.json())
-        .then(() => {
-          document.getElementById('ip-city').innerText = 'Việt Nam';
-          document.getElementById('ip-region').innerText = 'Hải Phòng / Hà Nội';
-          document.getElementById('ip-isp').innerText = 'Nội địa (ISP)';
+          document.getElementById('ip-isp').innerText = data.org || data.asn || 'Nội địa (ISP)';
         })
         .catch(() => {
-          document.getElementById('ip-city').innerText = 'N/A';
+          // Trực fallback ipwho.is
+          fetch('https://ipwho.is/')
+            .then(res => res.json())
+            .then(data => {
+              if (data.success) {
+                document.getElementById('ip-city').innerText = data.city || 'N/A';
+                document.getElementById('ip-region').innerText = data.region || 'N/A';
+                document.getElementById('ip-isp').innerText = (data.connection && data.connection.isp) ? data.connection.isp : (data.org || 'N/A');
+              } else {
+                fetchIpFallback();
+              }
+            })
+            .catch(() => fetchIpFallback());
         });
     }
 
-    // 2. Tải danh sách Tool từ file data.json (đã thêm key rent và testpoint)
+    function fetchIspOnly() {
+      fetch('https://ipwho.is/')
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            document.getElementById('ip-isp').innerText = (data.connection && data.connection.isp) ? data.connection.isp : (data.org || 'Nội địa (ISP)');
+          } else {
+            document.getElementById('ip-isp').innerText = 'Nội địa (ISP)';
+          }
+        })
+        .catch(() => {
+          document.getElementById('ip-isp').innerText = 'Nội địa (ISP)';
+        });
+    }
+
+    function fetchIpFallback() {
+      document.getElementById('ip-city').innerText = 'N/A';
+      document.getElementById('ip-region').innerText = 'Việt Nam';
+      document.getElementById('ip-isp').innerText = 'Nội địa (ISP)';
+    }
+
+    // Chạy định vị ngay khi nạp trang
+    getLocation();
+
+    // 2. Tải danh sách Tool từ file data.json
     let toolsData = {
       mobile: [],
       driver: [],
