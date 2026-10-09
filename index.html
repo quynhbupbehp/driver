@@ -37,57 +37,57 @@
 </head>
 <body class="p-4 md:p-8 max-w-7xl mx-auto space-y-8">
 
-  <!-- Thông tin Facebook & Hệ thống (4 ô) -->
+  <!-- Thông tin Facebook & Hệ thống (Thu hẹp chiều ngang ôm sát nội dung) -->
   <section>
     <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
       <i class="fa-solid fa-tower-broadcast text-sky-400"></i> TOOL MOBILE + PC - QUYNH BUP BE
     </h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+    <div class="flex flex-wrap gap-3">
       
       <!-- Box Facebook -->
-      <a href="https://www.facebook.com/kimchimobile2019" target="_blank" class="card-dark p-3 rounded-xl flex items-center gap-3 transition-all hover:border-sky-500 group">
-        <div class="bg-blue-950/60 p-2.5 rounded-lg text-blue-400 border border-blue-800/50 group-hover:bg-blue-600 group-hover:text-white transition-all shrink-0">
-          <i class="fa-brands fa-facebook text-lg"></i>
+      <a href="https://www.facebook.com/kimchimobile2019" target="_blank" class="card-dark p-2.5 px-3 rounded-xl flex items-center gap-3 transition-all hover:border-sky-500 group">
+        <div class="bg-blue-950/60 p-2 rounded-lg text-blue-400 border border-blue-800/50 group-hover:bg-blue-600 group-hover:text-white transition-all shrink-0">
+          <i class="fa-brands fa-facebook text-base"></i>
         </div>
-        <div class="min-w-0">
+        <div class="whitespace-nowrap">
           <div class="text-[11px] text-gray-400 leading-tight">DỊCH VỤ PHẦN MỀM ONLINE</div>
-          <div class="font-bold text-sky-400 group-hover:text-sky-300 text-sm truncate">ĐẶNG VĂN QUỴNH</div>
+          <div class="font-bold text-sky-400 group-hover:text-sky-300 text-sm">ĐẶNG VĂN QUỴNH</div>
         </div>
       </a>
 
       <!-- Box Vị trí gộp (Dòng 1: Nam Sách, Dòng 2: TP Hải Phòng) -->
-      <div class="card-dark p-3 rounded-xl flex items-center gap-3">
-        <div class="bg-sky-950/50 p-2.5 rounded-lg text-sky-400 border border-sky-800/40 shrink-0">
-          <i class="fa-solid fa-map-location-dot text-lg"></i>
+      <div class="card-dark p-2.5 px-3 rounded-xl flex items-center gap-3">
+        <div class="bg-sky-950/50 p-2 rounded-lg text-sky-400 border border-sky-800/40 shrink-0">
+          <i class="fa-solid fa-map-location-dot text-base"></i>
         </div>
-        <div class="flex flex-col justify-center min-w-0">
-          <div id="ip-city" class="font-bold text-gray-200 text-sm leading-snug truncate">Đang tải...</div>
-          <div id="ip-region" class="font-bold text-gray-200 text-sm leading-snug truncate">Đang tải...</div>
+        <div class="flex flex-col justify-center whitespace-nowrap">
+          <div id="ip-city" class="font-bold text-gray-200 text-sm leading-snug">Đang tải...</div>
+          <div id="ip-region" class="font-bold text-gray-200 text-sm leading-snug">Đang tải...</div>
         </div>
       </div>
 
       <!-- Box Đang Dùng Mạng -->
-      <div class="card-dark p-3 rounded-xl flex items-center gap-3">
-        <div class="bg-sky-950/50 p-2.5 rounded-lg text-sky-400 border border-sky-800/40 shrink-0">
-          <i class="fa-solid fa-building text-lg"></i>
+      <div class="card-dark p-2.5 px-3 rounded-xl flex items-center gap-3">
+        <div class="bg-sky-950/50 p-2 rounded-lg text-sky-400 border border-sky-800/40 shrink-0">
+          <i class="fa-solid fa-building text-base"></i>
         </div>
-        <div class="min-w-0">
+        <div class="whitespace-nowrap">
           <div class="text-[11px] text-gray-400 leading-tight">Đang Dùng Mạng</div>
-          <div id="ip-isp" class="font-bold text-gray-200 text-sm truncate">Đang tải...</div>
+          <div id="ip-isp" class="font-bold text-gray-200 text-sm">Đang tải...</div>
         </div>
       </div>
 
       <!-- Box Địa Chỉ IP Mạng (Click vào để Copy IP) -->
-      <div onclick="copyIpAddress()" class="card-dark p-3 rounded-xl flex items-center gap-3 cursor-pointer transition-all hover:border-sky-400 group relative">
-        <div class="bg-sky-950/50 p-2.5 rounded-lg text-sky-400 border border-sky-800/40 shrink-0 group-hover:bg-sky-600 group-hover:text-white transition-all">
-          <i class="fa-solid fa-network-wired text-lg"></i>
+      <div onclick="copyIpAddress()" class="card-dark p-2.5 px-3 rounded-xl flex items-center gap-3 cursor-pointer transition-all hover:border-sky-400 group relative">
+        <div class="bg-sky-950/50 p-2 rounded-lg text-sky-400 border border-sky-800/40 shrink-0 group-hover:bg-sky-600 group-hover:text-white transition-all">
+          <i class="fa-solid fa-network-wired text-base"></i>
         </div>
-        <div class="min-w-0">
+        <div class="whitespace-nowrap">
           <div class="text-[11px] text-gray-400 leading-tight flex items-center gap-1">
             <span>Địa Chỉ IP Mạng</span>
             <i class="fa-regular fa-copy text-[10px] text-sky-400 opacity-80"></i>
           </div>
-          <div id="ip-address" class="font-bold text-gray-200 text-sm truncate group-hover:text-sky-300">Đang tải...</div>
+          <div id="ip-address" class="font-bold text-gray-200 text-sm group-hover:text-sky-300">Đang tải...</div>
         </div>
         <!-- Thông báo copy nhỏ -->
         <span id="copy-toast" class="hidden absolute top-1 right-2 bg-sky-600 text-white text-[10px] px-1.5 py-0.5 rounded shadow">Đã chép!</span>
@@ -164,12 +164,10 @@
         })
         .catch(() => fetchIpFallback());
 
-      // Lấy địa chỉ IP chính xác từ API hỗ trợ nguồn ping.eu
       fetchPingEuIp();
     }
 
     function fetchPingEuIp() {
-      // Gọi API trả về IP công cộng chính xác từ hệ thống mạng ping.eu
       fetch('https://port-chk.ping.eu/json')
         .then(res => res.json())
         .then(data => {
