@@ -55,20 +55,14 @@
         </div>
       </a>
 
-      <!-- Box Gộp Vị trí (Quận / Huyện Cũ trên, Tỉnh / TP dưới) -->
+      <!-- Box Vị trí gộp (Dòng 1: Quận/Huyện, Dòng 2: TP/Tỉnh) -->
       <div class="card-dark p-4 rounded-xl flex items-center gap-4">
         <div class="bg-sky-950/50 p-3 rounded-lg text-sky-400 border border-sky-800/40">
           <i class="fa-solid fa-map-location-dot text-xl"></i>
         </div>
-        <div class="space-y-1">
-          <div>
-            <span class="text-xs text-gray-400">Quận / Huyện Cũ: </span>
-            <span id="ip-city" class="font-bold text-gray-200">Đang tải...</span>
-          </div>
-          <div>
-            <span class="text-xs text-gray-400">Tỉnh / Thành Phố: </span>
-            <span id="ip-region" class="font-bold text-gray-200">Đang tải...</span>
-          </div>
+        <div class="flex flex-col justify-center space-y-0.5">
+          <div id="ip-city" class="font-bold text-gray-200">Đang tải...</div>
+          <div id="ip-region" class="font-bold text-gray-200">Đang tải...</div>
         </div>
       </div>
 
@@ -120,14 +114,31 @@
   </section>
 
   <script>
-    // 1. Chỉ dùng API IP công cộng (Tuyệt đối không đụng vào GPS/Geolocation)
+    // Hàm xử lý chỉ đổi Chi Linh / Chí Linh -> Nam Sách, giữ nguyên các địa danh khác
+    function formatCityName(city) {
+      if (!city) return 'Nam Sách';
+      if (/Chi\s*Linh/gi.test(city)) {
+        return 'Nam Sách';
+      }
+      return city;
+    }
+
+    // Hàm rút gọn "Thành Phố" / "Thanh Pho" thành "TP"
+    function formatRegionName(region) {
+      if (!region) return 'TP Hai Phong';
+      return region
+        .replace(/Thành\s+Phố/gi, 'TP')
+        .replace(/Thanh\s+Pho/gi, 'TP');
+    }
+
+    // 1. Chỉ dùng API IP công cộng
     function loadIpLocation() {
       fetch('https://ipwho.is/')
         .then(res => res.json())
         .then(data => {
           if (data.success) {
-            document.getElementById('ip-city').innerText = data.city || 'N/A';
-            document.getElementById('ip-region').innerText = data.region || 'N/A';
+            document.getElementById('ip-city').innerText = formatCityName(data.city);
+            document.getElementById('ip-region').innerText = formatRegionName(data.region);
             document.getElementById('ip-isp').innerText = (data.connection && data.connection.isp) ? data.connection.isp : (data.org || 'N/A');
           } else {
             fetchIpFallback();
@@ -137,8 +148,8 @@
     }
 
     function fetchIpFallback() {
-      document.getElementById('ip-city').innerText = 'N/A';
-      document.getElementById('ip-region').innerText = 'Việt Nam';
+      document.getElementById('ip-city').innerText = 'Nam Sách';
+      document.getElementById('ip-region').innerText = 'TP Hai Phong';
       document.getElementById('ip-isp').innerText = 'Nội địa (ISP)';
     }
 
