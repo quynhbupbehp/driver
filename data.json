@@ -1,89 +1,240 @@
-{
-  "mobile": [
-    {
-      "name": "Tool Kết Nối",
-      "url": "https://byvn.net/dV6N"
-    },
-    {
-      "name": "Ramdisk_Online",
-      "url": "https://byvn.net/93x2"
-    },
-    {
-      "name": "JB - WinRa1n2.1",
-      "url": "https://byvn.net/rXXk"
-    },
-    {
-      "name": "ODIN + SAMSUNG + DRIVER",
-      "url": "https://byvn.net/AYQ0"
-    },
-    {
-      "name": "Sigma Plus",
-      "url": "https://byvn.net/3AWr"
-    },
-    {
-      "name": "MagicCFG_v1.2.1 - Đổi Thông Tin Ổ",
-      "url": "https://byvn.net/8UNI"
-    },
-    {
-      "name": "0375 239 239",
-      "url": "https://drive.google.com/file/d/your-link-4"
-    },
-    {
-      "name": "FRP XIAOMI SERVER",
-      "url": "https://byvn.net/9IPu"
-    },
-    {
-      "name": "Mi Flash 2025",
-      "url": "https://drive.google.com/file/d/your-link-6"
-    },
-    {
-      "name": "Libusb + QcomMtk",
-      "url": "https://byvn.net/2v65"
-    },
-    {
-      "name": "Neat Download Manager",
-      "url": "https://byvn.net/R8Nb"
-    },
-    {
-      "name": "CHƯA UPDATE",
-      "url": "......."
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TOOL MOBILE + PC - QUYNH BUP BE</title>
+  <style>
+    body {
+      background-color: #0b0f19;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
     }
-  ],
-  "driver": [
-    {
-      "name": "SPD - Spreadtrum",
-      "url": "https://byvn.net/O0Y6"
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
     }
-     {
-      "name": "LG  USB Driver",
-      "url": "https://byvn.net/Ukys"
+
+    .header-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
-      {
-      "name": "QcomMtk_Driver_2.0.1",
-      "url": "https://urlvn.net/tdcrasa"
+
+    /* Grid thông tin cá nhân */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 25px;
     }
-        {
-      "name": "SAMSUNG USB Driver",
-      "url": "https://urlvn.net/2z0fazb"
+
+    .info-card {
+      background-color: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 8px;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
-        {
-      "name": "SONY DRIVER",
-      "url": "https://urlvn.net/miq7bvy"
+
+    .info-card .label {
+      font-size: 12px;
+      color: #9ca3af;
     }
-  ],
-  "pc": [
-    {
-      "name": "File TIB Windowns 10 Pro",
-      "url": "https://urlvn.net/phiy5z6"
+
+    .info-card .value {
+      font-size: 14px;
+      font-weight: bold;
+      color: #38bdf8;
+      margin-top: 2px;
     }
-     {
-      "name": "Anhdv.Boot.Cứu Hộ",
-      "url": "https://byvn.net/j1iW"
+
+    /* Tab Navigation */
+    .tabs {
+      display: flex;
+      gap: 10px;
+      border-bottom: 1px solid #1f2937;
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
     }
-  ],
-  "banking": [
-    {
-      "name": "Tài Khoản Ngân Hàng",
-      "url": "https://byvn.net/nD4V"
+
+    .tab-btn {
+      background-color: #111827;
+      color: #9ca3af;
+      border: 1px solid #1f2937;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.2s ease;
     }
-  ]
+
+    .tab-btn:hover {
+      background-color: #1f2937;
+      color: #ffffff;
+    }
+
+    .tab-btn.active {
+      background-color: #0284c7;
+      color: #ffffff;
+      border-color: #0284c7;
+    }
+
+    /* Content Area */
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+    }
+
+    .item-card {
+      background-color: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 8px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+      color: #e5e7eb;
+      transition: all 0.2s ease;
+    }
+
+    .item-card:hover {
+      border-color: #38bdf8;
+      background-color: #1e293b;
+      transform: translateY(-2px);
+    }
+
+    .empty-msg {
+      color: #9ca3af;
+      text-align: center;
+      padding: 40px;
+      width: 100%;
+      grid-column: 1 / -1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header-title">
+      📡 TOOL MOBILE + PC - QUYNH BUP BE
+    </div>
+
+    <!-- Thông tin người dùng -->
+    <div class="info-grid">
+      <div class="info-card">
+        <div>
+          <div class="label">DV PHẦN MỀM ONLINE</div>
+          <div class="value">ĐẶNG VĂN QUUYNH</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div>
+          <div class="label">Xã / Phường</div>
+          <div class="value">Chí Linh</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div>
+          <div class="label">Tỉnh / Thành Phố</div>
+          <div class="value">Thành Phố Hải Phòng</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div>
+          <div class="label">Đang Dùng Mạng</div>
+          <div class="value">VNPT Corp</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Các Tab danh mục -->
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('mobile', this)">📱 Tool Mobile</button>
+      <button class="tab-btn" onclick="switchTab('driver', this)">💳 Driver</button>
+      <button class="tab-btn" onclick="switchTab('pc', this)">💻 Máy Tính</button>
+      <button class="tab-btn" onclick="switchTab('banking', this)">🏛️ Ngân Hàng</button>
+    </div>
+
+    <!-- Khu vực hiển thị danh sách link -->
+    <div id="data-container" class="content-grid"></div>
+  </div>
+
+  <script>
+    // Dữ liệu JSON đã sửa lỗi cú pháp
+    const data = {
+      "mobile": [
+        { "name": "Tool Kết Nối", "url": "https://byvn.net/dV6N" },
+        { "name": "Ramdisk_Online", "url": "https://byvn.net/93x2" },
+        { "name": "JB - WinRa1n2.1", "url": "https://byvn.net/rXXk" },
+        { "name": "ODIN + SAMSUNG + DRIVER", "url": "https://byvn.net/AYQ0" },
+        { "name": "Sigma Plus", "url": "https://byvn.net/3AWr" },
+        { "name": "MagicCFG_v1.2.1 - Đổi Thông Tin Ổ", "url": "https://byvn.net/8UNI" },
+        { "name": "0375 239 239", "url": "https://drive.google.com/file/d/your-link-4" },
+        { "name": "FRP XIAOMI SERVER", "url": "https://byvn.net/9IPu" },
+        { "name": "Mi Flash 2025", "url": "https://drive.google.com/file/d/your-link-6" },
+        { "name": "Libusb + QcomMtk", "url": "https://byvn.net/2v65" },
+        { "name": "Neat Download Manager", "url": "https://byvn.net/R8Nb" },
+        { "name": "CHƯA UPDATE", "url": "......." }
+      ],
+      "driver": [
+        { "name": "SPD - Spreadtrum", "url": "https://byvn.net/O0Y6" },
+        { "name": "LG USB Driver", "url": "https://byvn.net/Ukys" },
+        { "name": "QcomMtk_Driver_2.0.1", "url": "https://urlvn.net/tdcrasa" },
+        { "name": "SAMSUNG USB Driver", "url": "https://urlvn.net/2z0fazb" },
+        { "name": "SONY DRIVER", "url": "https://urlvn.net/miq7bvy" }
+      ],
+      "pc": [
+        { "name": "File TIB Windowns 10 Pro", "url": "https://urlvn.net/phiy5z6" },
+        { "name": "Anhdv.Boot.Cứu Hộ", "url": "https://byvn.net/j1iW" }
+      ],
+      "banking": [
+        { "name": "Tài Khoản Ngân Hàng", "url": "https://byvn.net/nD4V" }
+      ]
+    };
+
+    // Hàm render dữ liệu theo tab
+    function renderCategory(category) {
+      const container = document.getElementById('data-container');
+      container.innerHTML = '';
+
+      const items = data[category];
+
+      if (!items || items.length === 0) {
+        container.innerHTML = '<div class="empty-msg">Chưa có dữ liệu trong mục này.</div>';
+        return;
+      }
+
+      items.forEach(item => {
+        const a = document.createElement('a');
+        a.className = 'item-card';
+        a.href = item.url !== '.......' ? item.url : '#';
+        a.target = item.url !== '.......' ? '_blank' : '_self';
+        a.innerHTML = `<span>${item.name}</span> <span>🔗</span>`;
+        container.appendChild(a);
+      });
+    }
+
+    // Hàm chuyển đổi tab
+    function switchTab(category, btnElement) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      btnElement.classList.add('active');
+      renderCategory(category);
+    }
+
+    // Load mặc định tab mobile khi mở trang
+    renderCategory('mobile');
+  </script>
+</body>
+</html>
