@@ -37,70 +37,69 @@
 </head>
 <body class="p-4 md:p-8 max-w-7xl mx-auto space-y-6">
 
-  <!-- Tiêu đề trang & Hàng 4 ô trên -->
-  <section>
-    <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
-      <i class="fa-solid fa-tower-broadcast text-sky-400"></i> TOOL MOBILE + PC - QUYNH BUP BE
-    </h2>
+  <!-- Tiêu đề trang -->
+  <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+    <i class="fa-solid fa-tower-broadcast text-sky-400"></i> TOOL MOBILE + PC - QUYNH BUP BE
+  </h2>
+
+  <!-- Container bao bọc thu gọn vừa bằng tổng chiều ngang thanh Tab -->
+  <div class="w-fit max-w-full space-y-4">
     
-    <!-- Khối 4 ô hàng trên (Dàn đều cân xứng từ trái sang phải) -->
-    <div class="flex flex-wrap items-center justify-between gap-3 w-full">
+    <!-- Hàng trên: 4 ô thông tin (Thu gọn chiều ngang bằng hàng dưới) -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-2.5 w-full">
       
       <!-- Box Facebook -->
-      <a href="https://www.facebook.com/kimchimobile2019" target="_blank" class="card-dark p-2.5 px-4 rounded-xl flex items-center justify-center gap-3 transition-all hover:border-sky-500 group h-[52px] flex-1 min-w-[200px]">
-        <div class="bg-blue-950/60 p-2 rounded-lg text-blue-400 border border-blue-800/50 group-hover:bg-blue-600 group-hover:text-white transition-all shrink-0">
-          <i class="fa-brands fa-facebook text-base"></i>
+      <a href="https://www.facebook.com/kimchimobile2019" target="_blank" class="card-dark p-2 px-3 rounded-xl flex items-center gap-2.5 transition-all hover:border-sky-500 group h-[48px]">
+        <div class="bg-blue-950/60 p-1.5 rounded-lg text-blue-400 border border-blue-800/50 group-hover:bg-blue-600 group-hover:text-white transition-all shrink-0">
+          <i class="fa-brands fa-facebook text-sm"></i>
         </div>
         <div class="whitespace-nowrap flex flex-col justify-center">
-          <div class="text-[11px] text-gray-400 leading-tight">DỊCH VỤ PHẦN MỀM ONLINE</div>
-          <div class="font-bold text-sky-400 group-hover:text-sky-300 text-sm">ĐẶNG VĂN QUỴNH</div>
+          <div class="text-[10px] text-gray-400 leading-tight">DỊCH VỤ PHẦN MỀM ONLINE</div>
+          <div class="font-bold text-sky-400 group-hover:text-sky-300 text-xs">ĐẶNG VĂN QUỴNH</div>
         </div>
       </a>
 
       <!-- Box Vị trí gộp (Nam Sách - TP Hải Phòng) -->
-      <div class="card-dark p-2.5 px-4 rounded-xl flex items-center justify-center gap-3 h-[52px] flex-1 min-w-[200px]">
-        <div class="bg-sky-950/50 p-2 rounded-lg text-sky-400 border border-sky-800/40 shrink-0">
-          <i class="fa-solid fa-map-location-dot text-base"></i>
+      <div class="card-dark p-2 px-3 rounded-xl flex items-center gap-2.5 h-[48px]">
+        <div class="bg-sky-950/50 p-1.5 rounded-lg text-sky-400 border border-sky-800/40 shrink-0">
+          <i class="fa-solid fa-map-location-dot text-sm"></i>
         </div>
         <div class="flex flex-col justify-center whitespace-nowrap">
-          <div id="ip-city" class="font-bold text-gray-200 text-sm leading-tight">Đang tải...</div>
-          <div id="ip-region" class="font-bold text-gray-200 text-sm leading-tight">Đang tải...</div>
+          <div id="ip-city" class="font-bold text-gray-200 text-xs leading-tight">Đang tải...</div>
+          <div id="ip-region" class="font-bold text-gray-200 text-xs leading-tight">Đang tải...</div>
         </div>
       </div>
 
       <!-- Box Đang Dùng Mạng -->
-      <div class="card-dark p-2.5 px-4 rounded-xl flex items-center justify-center gap-3 h-[52px] flex-1 min-w-[200px]">
-        <div class="bg-sky-950/50 p-2 rounded-lg text-sky-400 border border-sky-800/40 shrink-0">
-          <i class="fa-solid fa-building text-base"></i>
+      <div class="card-dark p-2 px-3 rounded-xl flex items-center gap-2.5 h-[48px]">
+        <div class="bg-sky-950/50 p-1.5 rounded-lg text-sky-400 border border-sky-800/40 shrink-0">
+          <i class="fa-solid fa-building text-sm"></i>
         </div>
         <div class="whitespace-nowrap flex flex-col justify-center">
-          <div class="text-[11px] text-gray-400 leading-tight">Đang Dùng Mạng</div>
-          <div id="ip-isp" class="font-bold text-gray-200 text-sm">Đang tải...</div>
+          <div class="text-[10px] text-gray-400 leading-tight">Đang Dùng Mạng</div>
+          <div id="ip-isp" class="font-bold text-gray-200 text-xs">Đang tải...</div>
         </div>
       </div>
 
       <!-- Box Địa Chỉ IP Mạng (Click vào để Copy IP) -->
-      <div onclick="copyIpAddress()" class="card-dark p-2.5 px-4 rounded-xl flex items-center justify-center gap-3 cursor-pointer transition-all hover:border-sky-400 group relative h-[52px] flex-1 min-w-[200px]">
-        <div class="bg-sky-950/50 p-2 rounded-lg text-sky-400 border border-sky-800/40 shrink-0 group-hover:bg-sky-600 group-hover:text-white transition-all">
-          <i class="fa-solid fa-network-wired text-base"></i>
+      <div onclick="copyIpAddress()" class="card-dark p-2 px-3 rounded-xl flex items-center gap-2.5 cursor-pointer transition-all hover:border-sky-400 group relative h-[48px]">
+        <div class="bg-sky-950/50 p-1.5 rounded-lg text-sky-400 border border-sky-800/40 shrink-0 group-hover:bg-sky-600 group-hover:text-white transition-all">
+          <i class="fa-solid fa-network-wired text-sm"></i>
         </div>
         <div class="whitespace-nowrap flex flex-col justify-center">
-          <div class="text-[11px] text-gray-400 leading-tight flex items-center gap-1">
+          <div class="text-[10px] text-gray-400 leading-tight flex items-center gap-1">
             <span>Địa Chỉ IP Mạng</span>
-            <i class="fa-regular fa-copy text-[10px] text-sky-400 opacity-80"></i>
+            <i class="fa-regular fa-copy text-[9px] text-sky-400 opacity-80"></i>
           </div>
-          <div id="ip-address" class="font-bold text-gray-200 text-sm group-hover:text-sky-300">Đang tải...</div>
+          <div id="ip-address" class="font-bold text-gray-200 text-xs group-hover:text-sky-300">Đang tải...</div>
         </div>
         <!-- Thông báo copy nhỏ -->
-        <span id="copy-toast" class="hidden absolute -top-2 right-2 bg-sky-600 text-white text-[10px] px-1.5 py-0.5 rounded shadow">Đã chép!</span>
+        <span id="copy-toast" class="hidden absolute -top-2 right-2 bg-sky-600 text-white text-[9px] px-1 py-0.5 rounded shadow">Đã chép!</span>
       </div>
 
     </div>
-  </section>
 
-  <!-- Hệ thống Tab phân loại hàng dưới -->
-  <section class="space-y-6">
-    <!-- Thanh Chuyển Tab -->
+    <!-- Hàng dưới: Thanh Chuyển Tab -->
     <div class="flex flex-wrap items-center gap-2 md:gap-2.5 border-b border-gray-800 pb-4 w-full">
       <button onclick="switchTab('mobile')" id="tab-mobile" class="tab-btn active px-4 py-2 rounded-xl text-sm font-medium border border-gray-800 bg-[#111827] text-gray-300 hover:text-white transition-all flex items-center gap-2">
         <i class="fa-solid fa-mobile-screen-button"></i> Tool Mobile
@@ -125,7 +124,10 @@
       </button>
     </div>
 
-    <!-- Lưới danh sách Tool (4 cột) -->
+  </div>
+
+  <!-- Lưới danh sách Tool (4 cột) -->
+  <section class="pt-2">
     <div id="toolGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
       <!-- Dữ liệu Tool sẽ tự động nạp từ file JSON theo Tab tương ứng -->
     </div>
