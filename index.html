@@ -17,16 +17,8 @@
       border: 1px solid #1f2937;
     }
     .card-dark:hover {
-      border-color: #374151;
-    }
-    .btn-download {
-      background-color: #0f172a;
-      border: 1px solid #1e293b;
-      color: #38bdf8;
-    }
-    .btn-download:hover {
-      background-color: #0284c7;
-      color: #ffffff;
+      border-color: #38bdf8;
+      background-color: #1f2937/60;
     }
     /* Style cho Tab Active */
     .tab-btn.active {
@@ -123,8 +115,8 @@
       </button>
     </div>
 
-    <!-- Lưới danh sách Tool (3 cột) -->
-    <div id="toolGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <!-- Lưới danh sách Tool (4 cột) -->
+    <div id="toolGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
       <!-- Dữ liệu Tool sẽ tự động nạp từ file JSON theo Tab tương ứng -->
     </div>
   </section>
@@ -190,14 +182,11 @@
 
       list.forEach((tool, index) => {
         const itemHtml = `
-          <div class="card-dark p-3 rounded-xl flex items-center gap-3 transition-all hover:bg-gray-800/40">
-            <a href="${tool.url}" target="_blank" class="btn-download p-3 rounded-lg flex items-center justify-center transition-colors">
-              <i class="fa-solid fa-download text-lg"></i>
-            </a>
-            <div class="font-medium text-gray-200">
-              <span class="text-gray-400 mr-1">${index + 1}.</span> ${tool.name}
+          <a href="${tool.url}" target="_blank" class="card-dark p-3 rounded-xl flex items-center transition-all hover:text-sky-400 group">
+            <div class="font-medium text-gray-200 group-hover:text-sky-400 text-sm truncate">
+              <span class="text-gray-400 group-hover:text-sky-400 mr-1.5 font-normal">${index + 1}.</span>${tool.name}
             </div>
-          </div>
+          </a>
         `;
         grid.insertAdjacentHTML('beforeend', itemHtml);
       });
