@@ -1,50 +1,55 @@
-[
-  {
-    "name": "Tool Kết Nối",
-    "url": "https://byvn.net/dV6N"
-  },
-  {
-    "name": "Ramdisk_Online",
-    "url": "https://byvn.net/93x2"
-  },
-  {
-    "name": "JB - WinRa1n2.1",
-    "url": "https://byvn.net/rXXk"
-  },
-  {
-    "name": "ODIN + SAMSUNG + DRIVER",
-    "url": "https://byvn.net/AYQ0"
-  },
-  {
-    "name": "Sigma Plus",
-    "url": "https://byvn.net/3AWr"
-  },
-  {
-    "name": "MagicCFG_v1.2.1 - Đổi Thông Tin Ổ",
-    "url": "https://byvn.net/8UNI"
-  },
-  {
-    "name": "Auto_Fastboot_Flash_Xiaomi.zip",
-    "url": "https://drive.google.com/file/d/your-link-4"
-  },
-  {
-    "name": "FRP XIAOMI SERVER",
-    "url": "https://byvn.net/9IPu"
-  },
-  {
-    "name": "MiFlash 2025",
-    "url": "https://drive.google.com/file/d/your-link-6"
-  },
-  {
-    "name": "Libusb + QcomMtk",
-    "url": "https://byvn.net/2v65"
-  },
-  {
-    "name": "Neat Download Manager",
-    "url": "https://byvn.net/R8Nb"
-  },
-  {
-    "name": "CHƯA UPDATE",
-    "url": "......."
-  }
-]
+{
+  "mobile": [
+    {
+      "name": "Tool Kết Nối",
+      "url": "https://byvn.net/dV6N"
+    },
+    {
+      "name": "Ramdisk_Online",
+      "url": "https://byvn.net/93x2"
+    },
+    {
+      "name": "JB - WinRa1n2.1",
+      "url": "https://byvn.net/rXXk"
+    },
+    {
+      "name": "ODIN + SAMSUNG + DRIVER",
+      "url": "https://byvn.net/AYQ0"
+    },
+    {
+      "name": "Sigma Plus",
+      "url": "https://byvn.net/3AWr"
+    },
+    {
+      "name": "MagicCFG_v1.2.1 - Đổi Thông Tin Ổ",
+      "url": "https://byvn.net/8UNI"
+    },
+    {
+      "name": "Auto_Fastboot_Flash_Xiaomi.zip",
+      "url": "https://drive.google.com/file/d/your-link-4"
+    },
+    {
+      "name": "FRP XIAOMI SERVER",
+      "url": "https://byvn.net/9IPu"
+    },
+    {
+      "name": "MiFlash 2025",
+      "url": "https://drive.google.com/file/d/your-link-6"
+    },
+    {
+      "name": "Libusb + QcomMtk",
+      "url": "https://byvn.net/2v65"
+    },
+    {
+      "name": "Neat Download Manager",
+      "url": "https://byvn.net/R8Nb"
+    },
+    {
+      "name": "CHƯA UPDATE",
+      "url": "......."
+    }
+  ],
+  "driver": [],
+  "pc": [],
+  "banking": []
+}
