@@ -37,7 +37,7 @@
 </head>
 <body class="p-4 md:p-8 max-w-7xl mx-auto space-y-8">
 
-  <!-- Thông tin Facebook & Hệ thống (4 ô gọn gàng) -->
+  <!-- Thông tin Facebook & Hệ thống (4 ô) -->
   <section>
     <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
       <i class="fa-solid fa-tower-broadcast text-sky-400"></i> TOOL MOBILE + PC - QUYNH BUP BE
@@ -77,15 +77,20 @@
         </div>
       </div>
 
-      <!-- Box Địa Chỉ IP Mạng (Đặt bên phải Đang Dùng Mạng) -->
-      <div class="card-dark p-3 rounded-xl flex items-center gap-3">
-        <div class="bg-sky-950/50 p-2.5 rounded-lg text-sky-400 border border-sky-800/40 shrink-0">
+      <!-- Box Địa Chỉ IP Mạng (Click vào để Copy IP) -->
+      <div onclick="copyIpAddress()" class="card-dark p-3 rounded-xl flex items-center gap-3 cursor-pointer transition-all hover:border-sky-400 group relative">
+        <div class="bg-sky-950/50 p-2.5 rounded-lg text-sky-400 border border-sky-800/40 shrink-0 group-hover:bg-sky-600 group-hover:text-white transition-all">
           <i class="fa-solid fa-network-wired text-lg"></i>
         </div>
         <div class="min-w-0">
-          <div class="text-[11px] text-gray-400 leading-tight">Địa Chỉ IP Mạng</div>
-          <div id="ip-address" class="font-bold text-gray-200 text-sm truncate">Đang tải...</div>
+          <div class="text-[11px] text-gray-400 leading-tight flex items-center gap-1">
+            <span>Địa Chỉ IP Mạng</span>
+            <i class="fa-regular fa-copy text-[10px] text-sky-400 opacity-80"></i>
+          </div>
+          <div id="ip-address" class="font-bold text-gray-200 text-sm truncate group-hover:text-sky-300">Đang tải...</div>
         </div>
+        <!-- Thông báo copy nhỏ -->
+        <span id="copy-toast" class="hidden absolute top-1 right-2 bg-sky-600 text-white text-[10px] px-1.5 py-0.5 rounded shadow">Đã chép!</span>
       </div>
 
     </div>
@@ -125,7 +130,7 @@
   </section>
 
   <script>
-    // Hàm xử lý chỉ đổi Chi Linh / Chí Linh -> Nam Sách, giữ nguyên các địa danh khác
+    // Hàm xử lý chỉ đổi Chi Linh / Chí Linh -> Nam Sách
     function formatCityName(city) {
       if (!city) return 'Nam Sách';
       if (/Chi\s*Linh/gi.test(city)) {
@@ -134,7 +139,7 @@
       return city;
     }
 
-    // Hàm rút gọn "Thành Phố" / "Thanh Pho" thành "TP" và chuyển "Hai Phong" -> "Hải Phòng"
+    // Hàm rút gọn "Thành Phố" / "Thanh Pho" thành "TP" và "Hai Phong" -> "Hải Phòng"
     function formatRegionName(region) {
       if (!region) return 'TP Hải Phòng';
       let formatted = region
@@ -144,7 +149,7 @@
       return formatted;
     }
 
-    // 1. Chỉ dùng API IP công cộng
+    // 1. Tải thông tin vị trí & ISP
     function loadIpLocation() {
       fetch('https://ipwho.is/')
         .then(res => res.json())
@@ -153,22 +158,60 @@
             document.getElementById('ip-city').innerText = formatCityName(data.city);
             document.getElementById('ip-region').innerText = formatRegionName(data.region);
             document.getElementById('ip-isp').innerText = (data.connection && data.connection.isp) ? data.connection.isp : (data.org || 'N/A');
-            document.getElementById('ip-address').innerText = data.ip || '127.0.0.1';
           } else {
             fetchIpFallback();
           }
         })
         .catch(() => fetchIpFallback());
+
+      // Lấy địa chỉ IP chính xác từ API hỗ trợ nguồn ping.eu
+      fetchPingEuIp();
+    }
+
+    function fetchPingEuIp() {
+      // Gọi API trả về IP công cộng chính xác từ hệ thống mạng ping.eu
+      fetch('https://port-chk.ping.eu/json')
+        .then(res => res.json())
+        .then(data => {
+          if (data && data.ip) {
+            document.getElementById('ip-address').innerText = data.ip;
+          } else {
+            fetchIpAddressFallback();
+          }
+        })
+        .catch(() => fetchIpAddressFallback());
+    }
+
+    function fetchIpAddressFallback() {
+      fetch('https://api.ipify.org?format=json')
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById('ip-address').innerText = data.ip || 'N/A';
+        })
+        .catch(() => {
+          document.getElementById('ip-address').innerText = 'N/A';
+        });
     }
 
     function fetchIpFallback() {
       document.getElementById('ip-city').innerText = 'Nam Sách';
       document.getElementById('ip-region').innerText = 'TP Hải Phòng';
       document.getElementById('ip-isp').innerText = 'VNPT Corp';
-      document.getElementById('ip-address').innerText = 'N/A';
     }
 
-    // Chạy tải vị trí qua IP
+    // Copy IP khi bấm vào ô Địa chỉ IP
+    function copyIpAddress() {
+      const ipText = document.getElementById('ip-address').innerText;
+      if (ipText && ipText !== 'Đang tải...' && ipText !== 'N/A') {
+        navigator.clipboard.writeText(ipText).then(() => {
+          const toast = document.getElementById('copy-toast');
+          toast.classList.remove('hidden');
+          setTimeout(() => toast.classList.add('hidden'), 1500);
+        });
+      }
+    }
+
+    // Chạy tải vị trí & IP
     loadIpLocation();
 
     // 2. Tải danh sách Tool từ file data.json
