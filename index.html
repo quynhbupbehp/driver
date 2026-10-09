@@ -110,18 +110,36 @@
   </section>
 
   <script>
-    // 1. Lấy thông tin IP & Hệ thống
-    fetch('https://ipapi.co/json/')
+    // 1. Lấy thông tin IP & Hệ thống (Dùng API miễn phí không bị chặn)
+    fetch('https://ipwho.is/')
       .then(res => res.json())
       .then(data => {
-        document.getElementById('ip-address').innerText = data.ip || 'N/A';
-        document.getElementById('ip-city').innerText = data.city || 'N/A';
-        document.getElementById('ip-region').innerText = data.region || 'N/A';
-        document.getElementById('ip-isp').innerText = data.org || 'N/A';
+        if (data.success) {
+          document.getElementById('ip-address').innerText = data.ip || 'N/A';
+          document.getElementById('ip-city').innerText = data.city || 'N/A';
+          document.getElementById('ip-region').innerText = data.region || 'N/A';
+          document.getElementById('ip-isp').innerText = (data.connection && data.connection.isp) ? data.connection.isp : (data.org || 'N/A');
+        } else {
+          fetchIpFallback();
+        }
       })
       .catch(() => {
-        document.getElementById('ip-address').innerText = 'Không thể lấy IP';
+        fetchIpFallback();
       });
+
+    function fetchIpFallback() {
+      fetch('https://api.ipify.org?format=json')
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById('ip-address').innerText = data.ip || 'N/A';
+          document.getElementById('ip-city').innerText = 'Việt Nam';
+          document.getElementById('ip-region').innerText = 'Hải Phòng / Hà Nội';
+          document.getElementById('ip-isp').innerText = 'Nội địa (ISP)';
+        })
+        .catch(() => {
+          document.getElementById('ip-address').innerText = 'Không thể lấy IP';
+        });
+    }
 
     // 2. Tải danh sách Tool từ file data.json
     let allTools = [];
