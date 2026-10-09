@@ -42,7 +42,7 @@
     <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
       <i class="fa-solid fa-tower-broadcast text-sky-400"></i> TOOL MOBILE + PC - QUYNH BUP BE
     </h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       
       <!-- Box Facebook -->
       <a href="https://www.facebook.com/kimchimobile2019" target="_blank" class="card-dark p-4 rounded-xl flex items-center gap-4 transition-all hover:border-sky-500 group">
@@ -55,25 +55,20 @@
         </div>
       </a>
 
-      <!-- Box Quận / Huyện -->
-      <div class="card-dark p-4 rounded-xl flex items-center gap-4">
-        <div class="bg-sky-950/50 p-3 rounded-lg text-sky-400 border border-sky-800/40">
-          <i class="fa-solid fa-city text-xl"></i>
-        </div>
-        <div>
-          <div class="text-xs text-gray-400">Quận / Huyện Cũ</div>
-          <div id="ip-city" class="font-bold text-gray-200">Đang tải...</div>
-        </div>
-      </div>
-
-      <!-- Box Tỉnh -->
+      <!-- Box Gộp Vị trí (Quận / Huyện Cũ trên, Tỉnh / TP dưới) -->
       <div class="card-dark p-4 rounded-xl flex items-center gap-4">
         <div class="bg-sky-950/50 p-3 rounded-lg text-sky-400 border border-sky-800/40">
           <i class="fa-solid fa-map-location-dot text-xl"></i>
         </div>
-        <div>
-          <div class="text-xs text-gray-400">Tỉnh / Thành Phố </div>
-          <div id="ip-region" class="font-bold text-gray-200">Đang tải...</div>
+        <div class="space-y-1">
+          <div>
+            <span class="text-xs text-gray-400">Quận / Huyện Cũ: </span>
+            <span id="ip-city" class="font-bold text-gray-200">Đang tải...</span>
+          </div>
+          <div>
+            <span class="text-xs text-gray-400">Tỉnh / Thành Phố: </span>
+            <span id="ip-region" class="font-bold text-gray-200">Đang tải...</span>
+          </div>
         </div>
       </div>
 
@@ -93,7 +88,7 @@
 
   <!-- Hệ thống Tab phân loại -->
   <section>
-    <!-- Thanh Chuyển Tab (Sắp xếp theo thứ tự mới) -->
+    <!-- Thanh Chuyển Tab -->
     <div class="flex flex-wrap gap-2 md:gap-3 border-b border-gray-800 pb-4 mb-6">
       <button onclick="switchTab('mobile')" id="tab-mobile" class="tab-btn active px-4 py-2.5 rounded-xl text-sm font-medium border border-gray-800 bg-[#111827] text-gray-300 hover:text-white transition-all flex items-center gap-2">
         <i class="fa-solid fa-mobile-screen-button"></i> Tool Mobile
