@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kho Tool & Driver Mobile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      background-color: #0b0f19;
+      color: #f3f4f6;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    .card-dark {
+      background-color: #111827;
+      border: 1px solid #1f2937;
+    }
+    .card-dark:hover {
+      border-color: #374151;
+    }
+    .btn-download {
+      background-color: #0f172a;
+      border: 1px solid #1e293b;
+      color: #38bdf8;
+    }
+    .btn-download:hover {
+      background-color: #0284c7;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body class="p-4 md:p-8 max-w-7xl mx-auto space-y-8">
+
+  <!-- Thông tin IP & Hệ thống -->
+  <section>
+    <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+      <i class="fa-solid fa-tower-broadcast text-sky-400"></i> Thông tin IP & Hệ thống
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      
+      <!-- Box IP -->
+      <div class="card-dark p-4 rounded-xl flex items-center gap-4">
+        <div class="bg-sky-950/50 p-3 rounded-lg text-sky-400 border border-sky-800/40">
+          <i class="fa-solid fa-network-wired text-xl"></i>
+        </div>
+        <div>
+          <div class="text-xs text-gray-400">Địa chỉ IP công khai</div>
+          <div id="ip-address" class="font-bold text-sky-300">Đang tải...</div>
+        </div>
+      </div>
+
+      <!-- Box Thành phố -->
+      <div class="card-dark p-4 rounded-xl flex items-center gap-4">
+        <div class="bg-sky-950/50 p-3 rounded-lg text-sky-400 border border-sky-800/40">
+          <i class="fa-solid fa-city text-xl"></i>
+        </div>
+        <div>
+          <div class="text-xs text-gray-400">Khu vực / Thành phố</div>
+          <div id="ip-city" class="font-bold text-gray-200">Đang tải...</div>
+        </div>
+      </div>
+
+      <!-- Box Tỉnh -->
+      <div class="card-dark p-4 rounded-xl flex items-center gap-4">
+        <div class="bg-sky-950/50 p-3 rounded-lg text-sky-400 border border-sky-800/40">
+          <i class="fa-solid fa-map-location-dot text-xl"></i>
+        </div>
+        <div>
+          <div class="text-xs text-gray-400">Tỉnh / thành phố</div>
+          <div id="ip-region" class="font-bold text-gray-200">Đang tải...</div>
+        </div>
+      </div>
+
+      <!-- Box Tổ chức -->
+      <div class="card-dark p-4 rounded-xl flex items-center gap-4">
+        <div class="bg-sky-950/50 p-3 rounded-lg text-sky-400 border border-sky-800/40">
+          <i class="fa-solid fa-building text-xl"></i>
+        </div>
+        <div>
+          <div class="text-xs text-gray-400">ISP / Nhà cung cấp</div>
+          <div id="ip-isp" class="font-bold text-gray-200">Đang tải...</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Danh sách Tool & Driver -->
+  <section>
+    <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+      <i class="fa-solid fa-box-archive text-sky-400"></i> Danh sách Tool & Driver
+    </h2>
+
+    <!-- Thanh tìm kiếm -->
+    <div class="relative mb-6">
+      <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+      <input 
+        type="text" 
+        id="searchInput" 
+        placeholder="Tìm kiếm tool..." 
+        class="w-full bg-[#111827] border border-gray-800 rounded-xl py-3 pl-11 pr-4 text-gray-200 focus:outline-none focus:border-sky-500 transition-colors"
+      >
+    </div>
+
+    <!-- Lưới danh sách Tool -->
+    <div id="toolGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- Dữ liệu Tool sẽ tự động nạp từ file JSON vào đây -->
+    </div>
+  </section>
+
+  <script>
+    // 1. Lấy thông tin IP & Hệ thống
+    fetch('https://ipapi.co/json/')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('ip-address').innerText = data.ip || 'N/A';
+        document.getElementById('ip-city').innerText = data.city || 'N/A';
+        document.getElementById('ip-region').innerText = data.region || 'N/A';
+        document.getElementById('ip-isp').innerText = data.org || 'N/A';
+      })
+      .catch(() => {
+        document.getElementById('ip-address').innerText = 'Không thể lấy IP';
+      });
+
+    // 2. Tải danh sách Tool từ file data.json
+    let allTools = [];
+
+    async function loadTools() {
+      try {
+        const response = await fetch('data.json');
+        allTools = await response.json();
+        renderTools(allTools);
+      } catch (error) {
+        console.error("Lỗi khi tải dữ liệu tool:", error);
+      }
+    }
+
+    // 3. Hiển thị danh sách ra màn hình
+    function renderTools(tools) {
+      const grid = document.getElementById('toolGrid');
+      grid.innerHTML = '';
+
+      tools.forEach((tool, index) => {
+        const itemHtml = `
+          <div class="card-dark p-3 rounded-xl flex items-center gap-3 transition-all hover:bg-gray-800/40">
+            <a href="${tool.url}" target="_blank" class="btn-download p-3 rounded-lg flex items-center justify-center transition-colors">
+              <i class="fa-solid fa-download text-lg"></i>
+            </a>
+            <div class="font-medium text-gray-200">
+              <span class="text-gray-400 mr-1">${index + 1}.</span> ${tool.name}
+            </div>
+          </div>
+        `;
+        grid.insertAdjacentHTML('beforeend', itemHtml);
+      });
+    }
+
+    // 4. Tìm kiếm Tool nhanh
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      const keyword = e.target.value.toLowerCase();
+      const filtered = allTools.filter(tool => tool.name.toLowerCase().includes(keyword));
+      renderTools(filtered);
+    });
+
+    loadTools();
+  </script>
+</body>
+</html>
