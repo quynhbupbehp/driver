@@ -93,7 +93,7 @@
 
   <!-- Hệ thống Tab phân loại -->
   <section>
-    <!-- Thanh Chuyển Tab -->
+    <!-- Thanh Chuyển Tab (Sắp xếp theo thứ tự mới) -->
     <div class="flex flex-wrap gap-2 md:gap-3 border-b border-gray-800 pb-4 mb-6">
       <button onclick="switchTab('mobile')" id="tab-mobile" class="tab-btn active px-4 py-2.5 rounded-xl text-sm font-medium border border-gray-800 bg-[#111827] text-gray-300 hover:text-white transition-all flex items-center gap-2">
         <i class="fa-solid fa-mobile-screen-button"></i> Tool Mobile
@@ -101,17 +101,20 @@
       <button onclick="switchTab('driver')" id="tab-driver" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-medium border border-gray-800 bg-[#111827] text-gray-300 hover:text-white transition-all flex items-center gap-2">
         <i class="fa-solid fa-hard-drive"></i> Driver
       </button>
-      <button onclick="switchTab('pc')" id="tab-pc" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-medium border border-gray-800 bg-[#111827] text-gray-300 hover:text-white transition-all flex items-center gap-2">
-        <i class="fa-solid fa-desktop"></i> Máy Tính
-      </button>
-      <button onclick="switchTab('banking')" id="tab-banking" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-medium border border-gray-800 bg-[#111827] text-gray-300 hover:text-white transition-all flex items-center gap-2">
-        <i class="fa-solid fa-building-columns"></i> Ngân Hàng
-      </button>
       <button onclick="switchTab('rent')" id="tab-rent" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-medium border border-gray-800 bg-[#111827] text-gray-300 hover:text-white transition-all flex items-center gap-2">
         <i class="fa-solid fa-key"></i> Thuê Tool
       </button>
       <button onclick="switchTab('testpoint')" id="tab-testpoint" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-medium border border-gray-800 bg-[#111827] text-gray-300 hover:text-white transition-all flex items-center gap-2">
         <i class="fa-solid fa-microchip"></i> Testpoint
+      </button>
+      <button onclick="switchTab('box_setup')" id="tab-box_setup" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-medium border border-gray-800 bg-[#111827] text-gray-300 hover:text-white transition-all flex items-center gap-2">
+        <i class="fa-solid fa-box-archive"></i> Box Setup
+      </button>
+      <button onclick="switchTab('pc')" id="tab-pc" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-medium border border-gray-800 bg-[#111827] text-gray-300 hover:text-white transition-all flex items-center gap-2">
+        <i class="fa-solid fa-desktop"></i> Máy Tính
+      </button>
+      <button onclick="switchTab('banking')" id="tab-banking" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-medium border border-gray-800 bg-[#111827] text-gray-300 hover:text-white transition-all flex items-center gap-2">
+        <i class="fa-solid fa-building-columns"></i> Ngân Hàng
       </button>
     </div>
 
@@ -151,10 +154,11 @@
     let toolsData = {
       mobile: [],
       driver: [],
-      pc: [],
-      banking: [],
       rent: [],
-      testpoint: []
+      testpoint: [],
+      box_setup: [],
+      pc: [],
+      banking: []
     };
     let currentTab = 'mobile';
 
