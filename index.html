@@ -52,8 +52,8 @@
           <i class="fa-brands fa-facebook text-xl"></i>
         </div>
         <div>
-          <div class="text-xs text-gray-400">DV PHẨN MỀM ONLINE</div>
-          <div class="font-bold text-sky-400 group-hover:text-sky-300">ĐẶNG VĂN QUUỴNH</div>
+          <div class="text-xs text-gray-400">DV PHẦN MỀM ONLINE</div>
+          <div class="font-bold text-sky-400 group-hover:text-sky-300">ĐẶNG VĂN QUỲNH</div>
         </div>
       </a>
 
@@ -109,10 +109,16 @@
       <button onclick="switchTab('banking')" id="tab-banking" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-medium border border-gray-800 bg-[#111827] text-gray-300 hover:text-white transition-all flex items-center gap-2">
         <i class="fa-solid fa-building-columns"></i> Ngân Hàng
       </button>
+      <button onclick="switchTab('rent')" id="tab-rent" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-medium border border-gray-800 bg-[#111827] text-gray-300 hover:text-white transition-all flex items-center gap-2">
+        <i class="fa-solid fa-key"></i> Thuê Tool
+      </button>
+      <button onclick="switchTab('testpoint')" id="tab-testpoint" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-medium border border-gray-800 bg-[#111827] text-gray-300 hover:text-white transition-all flex items-center gap-2">
+        <i class="fa-solid fa-[#microchip]"></i> Testpoint
+      </button>
     </div>
 
-    <!-- Lưới danh sách Tool -->
-    <div id="toolGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <!-- Lưới danh sách Tool (Đã chỉnh thành 3 cột trên màn hình lg) -->
+    <div id="toolGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       <!-- Dữ liệu Tool sẽ tự động nạp từ file JSON theo Tab tương ứng -->
     </div>
   </section>
@@ -147,12 +153,14 @@
         });
     }
 
-    // 2. Tải danh sách Tool từ file data.json
+    // 2. Tải danh sách Tool từ file data.json (đã thêm key rent và testpoint)
     let toolsData = {
       mobile: [],
       driver: [],
       pc: [],
-      banking: []
+      banking: [],
+      rent: [],
+      testpoint: []
     };
     let currentTab = 'mobile';
 
