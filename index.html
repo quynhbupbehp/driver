@@ -39,23 +39,23 @@
 </head>
 <body class="p-4 md:p-8 max-w-7xl mx-auto space-y-8">
 
-  <!-- Thông tin IP & Hệ thống -->
+  <!-- Thông tin Facebook & Hệ thống -->
   <section>
     <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
       <i class="fa-solid fa-tower-broadcast text-sky-400"></i> Thông tin IP & Hệ thống
     </h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       
-      <!-- Box IP -->
-      <div class="card-dark p-4 rounded-xl flex items-center gap-4">
-        <div class="bg-sky-950/50 p-3 rounded-lg text-sky-400 border border-sky-800/40">
-          <i class="fa-solid fa-network-wired text-xl"></i>
+      <!-- Box Facebook -->
+      <a href="https://www.facebook.com/kimchimobile2019" target="_blank" class="card-dark p-4 rounded-xl flex items-center gap-4 transition-all hover:border-sky-500 group">
+        <div class="bg-blue-950/60 p-3 rounded-lg text-blue-400 border border-blue-800/50 group-hover:bg-blue-600 group-hover:text-white transition-all">
+          <i class="fa-brands fa-facebook text-xl"></i>
         </div>
         <div>
-          <div class="text-xs text-gray-400">Địa chỉ IP công khai</div>
-          <div id="ip-address" class="font-bold text-sky-300">Đang tải...</div>
+          <div class="text-xs text-gray-400">Liên hệ Hỗ trợ</div>
+          <div class="font-bold text-sky-400 group-hover:text-sky-300">FB: ĐẶNG VĂN QUỲNH</div>
         </div>
-      </div>
+      </a>
 
       <!-- Box Thành phố -->
       <div class="card-dark p-4 rounded-xl flex items-center gap-4">
@@ -63,7 +63,7 @@
           <i class="fa-solid fa-city text-xl"></i>
         </div>
         <div>
-          <div class="text-xs text-gray-400">Khu vực / Thành phố</div>
+          <div class="text-xs text-gray-400">Xã / Phường</div>
           <div id="ip-city" class="font-bold text-gray-200">Đang tải...</div>
         </div>
       </div>
@@ -118,12 +118,11 @@
   </section>
 
   <script>
-    // 1. Lấy thông tin IP & Hệ thống
+    // 1. Lấy thông tin Vị trí & ISP
     fetch('https://ipwho.is/')
       .then(res => res.json())
       .then(data => {
         if (data.success) {
-          document.getElementById('ip-address').innerText = data.ip || 'N/A';
           document.getElementById('ip-city').innerText = data.city || 'N/A';
           document.getElementById('ip-region').innerText = data.region || 'N/A';
           document.getElementById('ip-isp').innerText = (data.connection && data.connection.isp) ? data.connection.isp : (data.org || 'N/A');
@@ -138,14 +137,13 @@
     function fetchIpFallback() {
       fetch('https://api.ipify.org?format=json')
         .then(res => res.json())
-        .then(data => {
-          document.getElementById('ip-address').innerText = data.ip || 'N/A';
+        .then(() => {
           document.getElementById('ip-city').innerText = 'Việt Nam';
           document.getElementById('ip-region').innerText = 'Hải Phòng / Hà Nội';
           document.getElementById('ip-isp').innerText = 'Nội địa (ISP)';
         })
         .catch(() => {
-          document.getElementById('ip-address').innerText = 'Không thể lấy IP';
+          document.getElementById('ip-city').innerText = 'N/A';
         });
     }
 
