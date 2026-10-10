@@ -126,9 +126,9 @@
 
   </div>
 
-  <!-- Lưới danh sách Tool (3 cột) -->
+  <!-- Lưới danh sách Tool (3 cột, chảy theo chiều dọc giống hình mẫu) -->
   <section class="pt-2">
-    <div id="toolGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+    <div id="toolGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-flow-row lg:grid-flow-col auto-cols-fr gap-3" style="max-height: none;">
       <!-- Dữ liệu Tool sẽ tự động nạp từ file JSON theo Tab tương ứng -->
     </div>
   </section>
@@ -249,6 +249,10 @@
         grid.innerHTML = '<div class="col-span-full text-center py-8 text-gray-500">Chưa có dữ liệu trong mục này.</div>';
         return;
       }
+
+      // Tự động tính toán số hàng dọc dựa theo tổng số lượng item chia cho 3 cột
+      const rowCount = Math.ceil(list.length / 3);
+      grid.style.gridTemplateRows = `repeat(${rowCount}, minmax(0, auto))`;
 
       list.forEach((tool, index) => {
         const itemHtml = `
