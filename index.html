@@ -126,10 +126,15 @@
 
   </div>
 
-  <!-- Lưới danh sách Tool (3 cột, chảy theo chiều dọc giống hình mẫu) -->
+  <!-- Lưới danh sách Tool chia thành 3 cột chạy dọc liên tiếp -->
   <section class="pt-2">
-    <div id="toolGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-flow-row lg:grid-flow-col auto-cols-fr gap-3" style="max-height: none;">
-      <!-- Dữ liệu Tool sẽ tự động nạp từ file JSON theo Tab tương ứng -->
+    <div id="toolGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      <!-- Cột 1 -->
+      <div id="col-0" class="flex flex-col gap-3"></div>
+      <!-- Cột 2 -->
+      <div id="col-1" class="flex flex-col gap-3"></div>
+      <!-- Cột 3 -->
+      <div id="col-2" class="flex flex-col gap-3"></div>
     </div>
   </section>
 
@@ -238,23 +243,31 @@
       }
     }
 
-    // 3. Hiển thị danh sách ra màn hình theo Tab
+    // 3. Hiển thị danh sách ra màn hình theo Tab (Chia đều liên tiếp thành 3 phần cho 3 cột)
     function renderTools(category) {
-      const grid = document.getElementById('toolGrid');
-      grid.innerHTML = '';
+      const col0 = document.getElementById('col-0');
+      const col1 = document.getElementById('col-1');
+      const col2 = document.getElementById('col-2');
+
+      col0.innerHTML = '';
+      col1.innerHTML = '';
+      col2.innerHTML = '';
 
       const list = toolsData[category] || [];
 
       if (list.length === 0) {
-        grid.innerHTML = '<div class="col-span-full text-center py-8 text-gray-500">Chưa có dữ liệu trong mục này.</div>';
+        col0.innerHTML = '<div class="text-gray-500 py-4">Chưa có dữ liệu trong mục này.</div>';
         return;
       }
 
-      // Tự động tính toán số hàng dọc dựa theo tổng số lượng item chia cho 3 cột
-      const rowCount = Math.ceil(list.length / 3);
-      grid.style.gridTemplateRows = `repeat(${rowCount}, minmax(0, auto))`;
+      // Chia danh sách thành 3 phần liên tiếp nhau
+      const chunkSize = Math.ceil(list.length / 3);
+      const chunk1 = list.slice(0, chunkSize);
+      const chunk2 = list.slice(chunkSize, chunkSize * 2);
+      const chunk3 = list.slice(chunkSize * 2);
 
-      list.forEach((tool, index) => {
+      // Render cột 1
+      chunk1.forEach((tool, index) => {
         const itemHtml = `
           <a href="${tool.url}" target="_blank" class="card-dark p-2.5 rounded-xl flex items-center transition-all hover:text-sky-400 group w-full">
             <div class="font-medium text-gray-200 group-hover:text-sky-400 text-sm truncate">
@@ -262,7 +275,33 @@
             </div>
           </a>
         `;
-        grid.insertAdjacentHTML('beforeend', itemHtml);
+        col0.insertAdjacentHTML('beforeend', itemHtml);
+      });
+
+      // Render cột 2
+      chunk2.forEach((tool, index) => {
+        const actualIndex = chunkSize + index;
+        const itemHtml = `
+          <a href="${tool.url}" target="_blank" class="card-dark p-2.5 rounded-xl flex items-center transition-all hover:text-sky-400 group w-full">
+            <div class="font-medium text-gray-200 group-hover:text-sky-400 text-sm truncate">
+              <span class="text-gray-400 group-hover:text-sky-400 mr-1.5 font-normal">${actualIndex + 1}.</span>${tool.name}
+            </div>
+          </a>
+        `;
+        col1.insertAdjacentHTML('beforeend', itemHtml);
+      });
+
+      // Render cột 3
+      chunk3.forEach((tool, index) => {
+        const actualIndex = chunkSize * 2 + index;
+        const itemHtml = `
+          <a href="${tool.url}" target="_blank" class="card-dark p-2.5 rounded-xl flex items-center transition-all hover:text-sky-400 group w-full">
+            <div class="font-medium text-gray-200 group-hover:text-sky-400 text-sm truncate">
+              <span class="text-gray-400 group-hover:text-sky-400 mr-1.5 font-normal">${actualIndex + 1}.</span>${tool.name}
+            </div>
+          </a>
+        `;
+        col2.insertAdjacentHTML('beforeend', itemHtml);
       });
     }
 
