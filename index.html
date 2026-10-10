@@ -35,12 +35,17 @@
     }
   </script>
 </head>
-<body class="p-4 md:p-8 max-w-7xl mx-auto space-y-6">
+<body class="p-4 md:p-8 max-w-7xl mx-auto space-y-6 flex flex-col items-center">
 
-  <!-- Tiêu đề trang -->
-  <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
-    <i class="fa-solid fa-tower-broadcast text-sky-400"></i> TOOL MOBILE + PC - QUYNH BUP BE
-  </h2>
+  <!-- Tiêu đề trang căn giữa và chia dòng -->
+  <div class="text-center mb-4 space-y-1">
+    <h2 class="text-xl font-bold flex items-center justify-center gap-2">
+      <i class="fa-solid fa-tower-broadcast text-sky-400"></i> DỊCH VỤ PHẦN MỀM ONLINE TỪ XA
+    </h2>
+    <p class="text-xs md:text-sm text-yellow-400 font-semibold tracking-wide">
+      MỞ KHÓA ICLOUD - MỞ MẠNG - NẠP TIẾNG VIỆT - FIX VOLTE - FIX BANK...
+    </p>
+  </div>
 
   <!-- Container chung ôm trọn cả phần thông tin, tab và danh sách tool để đồng bộ kích thước thẳng hàng -->
   <div class="w-fit max-w-full space-y-4">
@@ -100,7 +105,7 @@
     </div>
 
     <!-- Thanh Chuyển Tab -->
-    <div class="flex flex-wrap items-center gap-2 md:gap-2.5 border-b border-gray-800 pb-4 w-full">
+    <div class="flex flex-wrap justify-center items-center gap-2 md:gap-2.5 border-b border-gray-800 pb-4 w-full">
       <button onclick="switchTab('mobile')" id="tab-mobile" class="tab-btn active px-4 py-2 rounded-xl text-sm font-medium border border-gray-800 bg-[#111827] text-gray-300 hover:text-white transition-all flex items-center gap-2">
         <i class="fa-solid fa-mobile-screen-button"></i> Tool Mobile
       </button>
