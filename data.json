@@ -51,6 +51,10 @@
   ],
   "driver": [
     {
+      "name": "TSM - Microsoft Libraries & Tools ",
+      "url": "https://download1324.mediafire.com/gt2eg09wgzjgyCbpO1izle_Fy_Qj7pfwCWV1SGRngJ0R62rbTzVuep09GLhJb-Unob7z_7TchtrgNzBfa98wJnNQOQIrOONBotNWkBshXArOwWrlMSzUm9sZQ8DSiX0lfLZYWuxkl9BVMmrl__h5Al4M-cpXaQwRXdeUMl8Ox_L_/3og14cxkx5fmsuk/TSM+-+Microsoft+Libraries+%26+Tools+.rar"
+    },
+    {
       "name": "SPD - Spreadtrum",
       "url": "https://download1507.mediafire.com/mx6eatzw69cgDYPmJvOOu3aGc-I43daecBBT2kmHLWIBOZyC0UKi7zrVALxHxmUyTc0DdOSHwy_1hCnSKvga4NaMsnWwuTrfHF3Of5FZos2XkKE821Rgp8vbw9OAjw7UjkdhPy4tEW76iEc1LZSvl0VlNuYyMQXy8s1e3DzbGpdi/4ix44j9kj2e5yuy/SPD+-+Spreadtrum.rar"
     },
@@ -69,6 +73,14 @@
     {
       "name": "SAMSUNG USB Driver",
       "url": "https://download1324.mediafire.com/0kycjklwlzvg97c9QUfN1k2e0fKlRyOYRXuxU-rjMFuuNKGLL06IjqFEQrDbONvq3Gw1obhdgXKQCKrTgoEIqBjRV-TFBBsHSoGy0OHvyiFgiYXMwd47J4Lb5cpEI6V7uRExIwN7nTZpMsYNDacW_fplloocI9UDYhVFZun5No4r/3ju8zh35jajso27/SAMSUNG_USB_Driver.exe"
+    },
+    {
+      "name": "VIVO USB Driver",
+      "url": "https://download947.mediafire.com/ik2mfev8hdzgThwCIk6bE6h-17HILPWBb9ZDVhLlu2RMQpvpCG_QT9TCZU8SKEcxWkKesfbpfbuJEqzjRi5sEABqfGBqeLIlbcQgrJUPKvZRWrrjLgy1qT-c4mmUg9E7kQSEm-vcJhxw7luWxwNjS-1whZjJfsBsU7HdBzAjxBot/f2tp7lexbdi8xkl/VIVO+USB+Driver.exe"
+    },
+    {
+      "name": "OnePlus USB Driver",
+      "url": "https://download2272.mediafire.com/8r2splpndpqg_uxCiQufI5lODoIS7nqU46cT03Ei5HUcQlflmRXL7AMtUIIhIbLJXZfZL6xT_4iaNidN0-EMqiw8HT5nWSi-McuwfzVncEv6GoBGXDuCiP6sypAM3dpJCtDosOafbYGcfGQqvTUxderFPg9aIRBdTCokF3v78sgZ/kbkw60axfuvn72v/OnePlus+USB+Driver.exe"
     },
     {
       "name": "SONY DRIVER",
