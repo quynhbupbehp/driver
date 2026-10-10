@@ -42,10 +42,10 @@
     <i class="fa-solid fa-tower-broadcast text-sky-400"></i> TOOL MOBILE + PC - QUYNH BUP BE
   </h2>
 
-  <!-- Container bao bọc thu gọn vừa bằng tổng chiều ngang thanh Tab -->
+  <!-- Container chung ôm trọn cả phần thông tin, tab và danh sách tool để đồng bộ kích thước thẳng hàng -->
   <div class="w-fit max-w-full space-y-4">
     
-    <!-- Hàng trên: 4 ô thông tin (Chữ & Icon căn giữa ô) -->
+    <!-- Hàng trên: 4 ô thông tin -->
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-2.5 w-full">
       
       <!-- Box Facebook -->
@@ -99,7 +99,7 @@
 
     </div>
 
-    <!-- Hàng dưới: Thanh Chuyển Tab -->
+    <!-- Thanh Chuyển Tab -->
     <div class="flex flex-wrap items-center gap-2 md:gap-2.5 border-b border-gray-800 pb-4 w-full">
       <button onclick="switchTab('mobile')" id="tab-mobile" class="tab-btn active px-4 py-2 rounded-xl text-sm font-medium border border-gray-800 bg-[#111827] text-gray-300 hover:text-white transition-all flex items-center gap-2">
         <i class="fa-solid fa-mobile-screen-button"></i> Tool Mobile
@@ -124,19 +124,19 @@
       </button>
     </div>
 
-  </div>
+    <!-- Lưới danh sách Tool 3 cột nằm bên trong khung chung để thẳng hàng -->
+    <section class="pt-2 w-full">
+      <div id="toolGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        <!-- Cột 1 -->
+        <div id="col-0" class="flex flex-col gap-3"></div>
+        <!-- Cột 2 -->
+        <div id="col-1" class="flex flex-col gap-3"></div>
+        <!-- Cột 3 -->
+        <div id="col-2" class="flex flex-col gap-3"></div>
+      </div>
+    </section>
 
-  <!-- Lưới danh sách Tool chia thành 3 cột chạy dọc liên tiếp -->
-  <section class="pt-2">
-    <div id="toolGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-      <!-- Cột 1 -->
-      <div id="col-0" class="flex flex-col gap-3"></div>
-      <!-- Cột 2 -->
-      <div id="col-1" class="flex flex-col gap-3"></div>
-      <!-- Cột 3 -->
-      <div id="col-2" class="flex flex-col gap-3"></div>
-    </div>
-  </section>
+  </div>
 
   <script>
     // Hàm xử lý chỉ đổi Chi Linh / Chí Linh -> Nam Sách
